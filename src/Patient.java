@@ -8,7 +8,7 @@ public class Patient {
     public String _phoneNumber;
     public String _email;
 
-
+    public Patient(){}
 
     public Patient(String firstName, String lastName, String pesel, String dateOfBirth, int age, String phoneNumber, String email) {
         _firstName = firstName;
