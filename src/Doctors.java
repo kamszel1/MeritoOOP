@@ -1,23 +1,17 @@
 import javax.print.Doc;
 
 public class Doctors extends Patient{
-    public String _specialization;
-    public static int _id = 0;
-    public int _personalId;
+    private Specialization _specialization;
+    private static int _id = 0;
+    private int _personalId;
 
 
-    public Doctors(String name, String lastName, String pesel, String dateOfBirth, int age, String phoneNumber, String email,String specialization){
-        this._firstName = name;
-        this._lastName = lastName;
-        this._pesel = pesel;
-        this._dateOfBirth = dateOfBirth;
-        this._age = age;
-        this._phoneNumber = phoneNumber;
-        this._email = email;
+    public Doctors(String name, String lastName, String pesel, String dateOfBirth, int age, String phoneNumber, String email,Specialization specialization){
+        super(name, lastName, pesel, dateOfBirth, age, phoneNumber, email);
         this._specialization = specialization;
         _personalId = _id++;
     }
-
+    public Specialization  getSpecialization() { return _specialization; }
     public int get_personalId(){
         return _personalId;
     }

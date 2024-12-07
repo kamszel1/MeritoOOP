@@ -8,14 +8,12 @@ public class Main {
         Scanner input = new Scanner(System.in);
         List<Patient> patients = new ArrayList<>(); // Dodajemy listę pacjentów
         List<Doctors> doctors = new ArrayList<>(); // Lista doktorów
-//        Doctors d1 = new Doctors("kamil", "sz", "321", "hj", 14, "e231", "dasdasdas", "artz");
-//        Doctors d2 = new Doctors("kam", "sz", "321", "hj", 14, "e231", "dasdasdas", "lekarz");
-//        System.out.println(d1.get_personalId());
-//        System.out.println(d2.get_personalId());
 
 
         while (true) {
-            System.out.println("Would you like to add a new patient, doctor or search for attributes? (Enter 'add 1', 'add 2' 'search 1' to search via pesel, 'search 2' to search via last name. Type 'exit' to quit):");
+            System.out.println("Would you like to add a new patient, doctor or search for attributes? " +
+                    "(Enter 'add 1' to add a Doctor, 'add 2' to add Patient " +
+                    "'search 1' to search via pesel, 'search 2' to search via last name. Type 'exit' to quit):");
             String choice = input.nextLine();
 
 
@@ -51,9 +49,22 @@ public class Main {
                 System.out.println("Please enter the email of the doctor: ");
                 String email = input.nextLine();
 
-                //podawanie specjalizacji doktora
-                System.out.println("Please enter the specialization of the doctor: ");
-                String specialization = input.nextLine();
+                // Wybór specjalizacji z enum
+                System.out.println("Available specializations: ");
+                for (Specialization spec : Specialization.values()) {
+                    System.out.println("- " + spec.info());
+                }
+                Specialization specialization;
+                while (true) {
+                    try {
+                        System.out.println("Enter the specialization: ");
+                        specialization = Specialization.valueOf(input.nextLine().toUpperCase());
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Invalid specialization. Please choose one from the list.");
+                    }
+                }
+                    //String specialization = input.nextLine();
 
                 Doctors newDoctor = new Doctors(name, lastName, pesel, dateOfBirth, age, phoneNumber, email, specialization);
                 doctors.add(newDoctor);

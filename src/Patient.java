@@ -1,12 +1,12 @@
 public class Patient {
 
-    public String _firstName;
-    public String _lastName;
-    public String _pesel;
-    public String _dateOfBirth;
-    public int _age;
-    public String _phoneNumber;
-    public String _email;
+   private String _firstName;
+    private String _lastName;
+    private String _pesel;
+    private String _dateOfBirth;
+    private int _age;
+    private String _phoneNumber;
+    private String _email;
 
     public Patient(){}
 
