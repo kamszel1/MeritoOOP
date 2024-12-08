@@ -146,6 +146,36 @@ public class Main {
                         System.out.println("Patient not found!");
                     }
                 }
+            } else if (choice.equalsIgnoreCase("update specialization")) {
+                System.out.println("Enter the ID of the doctor to update their specialization: ");
+                int doctorId = input.nextInt();
+                input.nextLine(); // Czyszczenie bufora
+
+                boolean doctorFound = false;
+                for (Doctors doctor : doctors) {
+                    if (doctor.get_personalId() == doctorId) {
+                        doctorFound = true;
+
+                        System.out.println("Available specializations: ");
+                        for (Specialization spec : Specialization.values()) {
+                            System.out.println("- " + spec.info());
+                        }
+
+                        System.out.println("Enter the new specialization to add: ");
+                        try {
+                            Specialization newSpecialization = Specialization.valueOf(input.nextLine().toUpperCase());
+                            doctor.addSpecialization(newSpecialization);
+                            System.out.println("Specialization added successfully!");
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Invalid specialization entered!");
+                        }
+
+                        break;
+                    }
+                }
+                if (!doctorFound) {
+                    System.out.println("Doctor with ID " + doctorId + " not found.");
+                }
             } else if (choice.equalsIgnoreCase("search 3")) {
                 System.out.println("Enter doctor's ID to print info: ");
                 int idToSearch = input.nextInt();
