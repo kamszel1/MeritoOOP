@@ -12,9 +12,9 @@ public class Main {
 
         while (true) {
             System.out.println("Would you like to add a new patient, doctor or search for attributes? \n" +
-                    "Enter 'add 1' to add a Patient, 'add 2' to add Doctor \n" +
-                    "'search 1' to search via pesel, 'search 2' to search via last name,\n" +
-                    "'search 3' to search via doctor's ID, 'search 4' to search via doctor's specialization. \n" +
+                    "Enter 'add a Patient' to add a Patient, 'add a Doctor' to add a Doctor \n" +
+                    "'search via pesel' to search via pesel, 'search via last name' to search via last name,\n" +
+                    "'search via doctor's ID' to search via doctor's ID, 'search via specialization' to search via doctor's specialization. \n" +
                     "'update specialization' add specialization to a doctor via ID \n" +
                     "Type 'exit' to quit");
             String choice = input.nextLine();
@@ -22,7 +22,7 @@ public class Main {
 
             if (choice.equalsIgnoreCase("exit")) {
                 break;
-            } else if (choice.equalsIgnoreCase("add 2")) {
+            } else if (choice.equalsIgnoreCase("add a Doctor")) {
 
                 //podawanie imienia doktora
                 System.out.println("Please enter the name of the doctor: ");
@@ -80,7 +80,7 @@ public class Main {
                 System.out.println("Doctor added successfully!");
 
 
-            } else if (choice.equalsIgnoreCase("add 1")) {
+            } else if (choice.equalsIgnoreCase("add a Patient")) {
                 // recepcjonista dodaje dane pacjenta
                 System.out.println("Enter first name: ");
                 String firstName = input.nextLine();
@@ -125,7 +125,7 @@ public class Main {
                 patients.add(newPatient); // Dodawanie pacjenta do listy
                 System.out.println("Patient added successfully!");
 
-            } else if (choice.equalsIgnoreCase("search 1")) {
+            } else if (choice.equalsIgnoreCase("search via pesel")) {
                 System.out.println("Enter patient's PESEL to print info: ");
                 String PESELtoSearch = input.nextLine();
                 boolean found = false;
@@ -139,7 +139,7 @@ public class Main {
                         System.out.println("Patient not found!");
                     }
                 }
-            } else if (choice.equalsIgnoreCase("search 2")) {
+            } else if (choice.equalsIgnoreCase("search via last name")) {
                 System.out.println("Enter patient's last name to print info: ");
                 String lastNametoSearch = input.nextLine();
                 boolean found = false;
@@ -183,7 +183,7 @@ public class Main {
                 if (!doctorFound) {
                     System.out.println("Doctor with ID " + doctorId + " not found.");
                 }
-            } else if (choice.equalsIgnoreCase("search 3")) {
+            } else if (choice.equalsIgnoreCase("search via doctor's ID")) {
                 System.out.println("Enter doctor's ID to print info: ");
                 int idToSearch = input.nextInt();
                 boolean found = false;
@@ -201,7 +201,7 @@ public class Main {
                     }
                 }
 
-            } else if (choice.equalsIgnoreCase("search 4")) {
+            } else if (choice.equalsIgnoreCase("search via specialization")) {
                 // Wyszukiwanie lekarzy po specjalizacji
                 System.out.println("Available specializations: ");
                 for (Specialization spec : Specialization.values()) {
