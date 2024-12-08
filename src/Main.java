@@ -16,7 +16,6 @@ public class Main {
                     "'search 1' to search via pesel, 'search 2' to search via last name,\n" +
                     "'search 3' to search via doctor's ID, 'search 4' to search via doctor's specialization. \n" +
                     "'update specialization' add specialization to a doctor via ID \n" +
-                    "" +
                     "Type 'exit' to quit");
             String choice = input.nextLine();
 
@@ -28,17 +27,17 @@ public class Main {
                 //podawanie imienia doktora
                 System.out.println("Please enter the name of the doctor: ");
                 String name = input.nextLine();
+                name = name.toUpperCase().charAt(0) + name.substring(1);
 
                 //podawanie nazwiska doktora
                 System.out.println("Please enter the last name of the doctor: ");
                 String lastName = input.nextLine();
+                lastName = lastName.toUpperCase().charAt(0) + lastName.substring(1);
 
-                //podawanie peselu doktora
-                //System.out.println("Please enter the pesel of the doctor: ");
-                String pesel = input.nextLine();
-                // sprawdzanie czy pesel ma 11 cyfr
+                String pesel;
+                // Sprawdzanie, czy PESEL ma 11 cyfr
                 do {
-                System.out.println("Please enter the pesel of the doctor:            ");
+                    System.out.println("Enter pesel: ");
                     pesel = input.nextLine();
                 } while (!Validator.isPeselValid(pesel));
 
@@ -93,7 +92,7 @@ public class Main {
 
                 System.out.println("Enter age: ");
                 int age = input.nextInt();
-                input.nextLine(); // Czyszczenie bufora jeśli ktoś poda coś więcej niż int
+                input.nextLine(); // Czyszcznie bufora
 
                 String pesel;
                 // sprawdzanie czy pesel ma 11 cyfr
