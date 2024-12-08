@@ -15,7 +15,8 @@ public class Main {
                     "Enter 'add 1' to add a Patient, 'add 2' to add Doctor \n" +
                     "'search 1' to search via pesel, 'search 2' to search via last name,\n" +
                     "'search 3' to search via doctor's ID, 'search 4' to search via doctor's specialization. \n" +
-                    "add specialization to a doctor via ID \n" +
+                    "'update specialization' add specialization to a doctor via ID \n" +
+                    "" +
                     "Type 'exit' to quit");
             String choice = input.nextLine();
 
