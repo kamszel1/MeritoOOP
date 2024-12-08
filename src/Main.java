@@ -15,6 +15,7 @@ public class Main {
                     "Enter 'add 1' to add a Patient, 'add 2' to add Doctor \n" +
                     "'search 1' to search via pesel, 'search 2' to search via last name,\n" +
                     "'search 3' to search via doctor's ID, 'search 4' to search via doctor's specialization. \n" +
+                    "add specialization to a doctor via ID \n" +
                     "Type 'exit' to quit");
             String choice = input.nextLine();
 
@@ -32,8 +33,14 @@ public class Main {
                 String lastName = input.nextLine();
 
                 //podawanie peselu doktora
-                System.out.println("Please enter the pesel of the doctor: ");
+                //System.out.println("Please enter the pesel of the doctor: ");
                 String pesel = input.nextLine();
+                // sprawdzanie czy pesel ma 11 cyfr
+                do {
+                System.out.println("Please enter the pesel of the doctor:            ");
+                    pesel = input.nextLine();
+                } while (!Validator.isPeselValid(pesel));
+
 
                 //podawanie daty urodzenia doktora
                 System.out.println("Please enter the date of birth of the doctor: ");
@@ -185,7 +192,7 @@ public class Main {
                         System.out.println("Doctor found: ");
                         System.out.println("Name: " + doctor.getFirstName());
                         System.out.println("Last name: " + doctor.getLastName());
-                        System.out.println("Specialization: " + doctor.getSpecialization());
+                        System.out.println("Specialization: " + doctor.getSpecializations());
                         found = true;
                         break;
                     }
@@ -207,11 +214,11 @@ public class Main {
                     Specialization specializationToSearch = Specialization.valueOf(specializationInput);
                     boolean found = false;
                     for (Doctors doctor : doctors) {
-                        if (doctor.getSpecialization() == specializationToSearch) {
+                        if (doctor.getSpecializations().contains(specializationToSearch)) {
                             System.out.println("Doctor ID: " + doctor.get_personalId());
                             System.out.println("Name: " + doctor.getFirstName());
                             System.out.println("Last Name: " + doctor.getLastName());
-                            System.out.println("Specialization: " + doctor.getSpecialization());
+                            System.out.println("Specialization: " + doctor.getSpecializations());
                             System.out.println("------");
                             found = true;
                         }
