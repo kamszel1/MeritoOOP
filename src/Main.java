@@ -11,9 +11,11 @@ public class Main {
 
 
         while (true) {
-            System.out.println("Would you like to add a new patient, doctor or search for attributes? " +
-                    "(Enter 'add 1' to add a Doctor, 'add 2' to add Patient " +
-                    "'search 1' to search via pesel, 'search 2' to search via last name. Type 'exit' to quit):");
+            System.out.println("Would you like to add a new patient, doctor or search for attributes? \n" +
+                    "Enter 'add 1' to add a Patient, 'add 2' to add Doctor \n" +
+                    "'search 1' to search via pesel, 'search 2' to search via last name,\n" +
+                    "'search 3' to search via doctor's ID, 'search 4' to search via doctor's specialization. \n" +
+                    "Type 'exit' to quit");
             String choice = input.nextLine();
 
 
@@ -64,12 +66,11 @@ public class Main {
                         System.out.println("Invalid specialization. Please choose one from the list.");
                     }
                 }
-                    //String specialization = input.nextLine();
+                //String specialization = input.nextLine();
 
                 Doctors newDoctor = new Doctors(name, lastName, pesel, dateOfBirth, age, phoneNumber, email, specialization);
                 doctors.add(newDoctor);
                 System.out.println("Doctor added successfully!");
-
 
 
             } else if (choice.equalsIgnoreCase("add 1")) {
@@ -145,9 +146,53 @@ public class Main {
                         System.out.println("Patient not found!");
                     }
                 }
+            } else if (choice.equalsIgnoreCase("search 3")) {
+                System.out.println("Enter doctor's ID to print info: ");
+                int idToSearch = input.nextInt();
+                boolean found = false;
+                for (Doctors doctor : doctors) {
+                    if (doctor.get_personalId() == idToSearch) {
+                        System.out.println("Doctor found: ");
+                        System.out.println("Name: " + doctor.getFirstName());
+                        System.out.println("Last name: " + doctor.getLastName());
+                        System.out.println("Specialization: " + doctor.getSpecialization());
+                        found = true;
+                        break;
+                    }
+                    if (!found) {
+                        System.out.println("Doctor not found!");
+                    }
+                }
+
+            } else if (choice.equalsIgnoreCase("search 4")) {
+                // Wyszukiwanie lekarzy po specjalizacji
+                System.out.println("Available specializations: ");
+                for (Specialization spec : Specialization.values()) {
+                    System.out.println("- " + spec.info());
+                }
+                System.out.println("Enter specialization to search: ");
+                String specializationInput = input.nextLine().toUpperCase();
+
+                try {
+                    Specialization specializationToSearch = Specialization.valueOf(specializationInput);
+                    boolean found = false;
+                    for (Doctors doctor : doctors) {
+                        if (doctor.getSpecialization() == specializationToSearch) {
+                            System.out.println("Doctor ID: " + doctor.get_personalId());
+                            System.out.println("Name: " + doctor.getFirstName());
+                            System.out.println("Last Name: " + doctor.getLastName());
+                            System.out.println("Specialization: " + doctor.getSpecialization());
+                            System.out.println("------");
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("No doctors found with the specialization: " + specializationToSearch.info());
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid specialization entered!");
+                }
             }
-
         }
-
     }
 }
